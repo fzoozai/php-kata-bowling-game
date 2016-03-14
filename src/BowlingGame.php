@@ -2,16 +2,24 @@
 
 class BowlingGame
 {
-    protected $score = 0;
+    protected $rolls = [];
 
     public function roll($pins)
     {
-        $this->score += $pins;
+        $this->rolls[] = $pins;
     }
 
     public function score()
     {
-        return $this->score;
+        $score = 0;
+        $roll = 0;
+
+        for($frame = 1; $frame <= 10; $frame++){
+            $score += $this->rolls[$roll] + $this->rolls[$roll + 1];
+            $roll += 2;
+        }
+
+        return $score;
     }
 
 
